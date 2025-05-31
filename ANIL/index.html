@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANIL HARDWARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      height: 50px; /* Increased logo size */
+    }
+
+    nav ul {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: orangered;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('your-hero.jpg') no-repeat center center/cover;
+      height: 50vh; /* Smaller hero height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgb(214, 42, 42);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      padding: 0 10px;
+      font-family: serif;
+    }
+
+    section {
+      padding: 60px 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: orangered;
+      margin-bottom: 30px;
+    }
+
+    .about {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .brands {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .brands img {
+      width: 120px;
+      height: auto;
+      transition: transform 0.3s;
+    }
+
+    .brands img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Product grid horizontally scrollable on desktop */
+    .product-grid {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-behavior: smooth;
+    }
+
+    .product-card {
+      flex: 0 0 140px;
+      height: 250px;
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .product-card p {
+      font-size: 0.9rem;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact p, .contact a {
+      font-size: 1.1rem;
+    }
+
+    .brochure-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: orangered;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .brochure-button:hover {
+      background-color: #cc3700;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Responsive for mobile */
+    @media (max-width: 600px) {
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 8px;
+        overflow-x: visible;
+        padding-bottom: 0;
+      }
+
+      .product-card {
+        flex: none;
+        height: auto;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 16px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hero {
+        height: 40vh;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+    .enquiry-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: orangered;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1001;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1002;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  background-color: orangered;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  z-index: 1001;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ANIL HARDWARE Logo" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="dropdown">
+  <button class="dropdown-toggle" onclick="toggleDropdown()">&#x22EE;</button>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#products">Our Products</a>
+    <a href="#brands">Brands</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+</div>
+
+</div>
+  </header>
+  <button class="enquiry-button" onclick="openEnquiry()">Enquiry Now</button>
+<div id="enquiryModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeEnquiry()">&times;</span>
+    <h2>Enquiry Form</h2>
+    <form action="https://formspree.io/f/mrbkzakn" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Enquiry</button>
+    </form>
+  </div>
+</div>
+
+  <div class="hero" id="home">
+    <h1 data-aos="zoom-in">Welcome to <br> ANIL HARDWARE</h1>
+  </div>
+  <section id="products">
+    <h2 class="section-title">Our Products</h2>
+    <div class="product-grid">
+      <div class="product-card" data-aos="fade-up">
+        <img src="PIPE.PNG.png" alt="M.S Pipes" />
+        <h3>M.S Pipes</h3>
+        <p>High quality steel pipes for industrial use.</p>
+      </div>
+      <div class="product-card" data-aos="fade-up">
+        <img src="gi pipe.png" alt="G.I Pipes" />
+        <h3>G.I Pipes</h3>
+        <p>Galvanized Iron Pipes in various sizes and standards.</p>
+      </div>
+      <div class="product-card" data-aos="fade-up">
+        <img src="pngwing.com.png" alt="M.S Fittings" />
+        <h3>M.S Fittings</h3>
+        <p>Supplier of VS brand MS forge fittings and butt-welded fittings.</p>
+      </div>
+      <div class="product-card" data-aos="fade-up">
+        <img src="seamless pipe.png" alt="Seamless Pipes" />
+        <h3>Seamless Pipes</h3>
+        <p>MS and SS seamless pipes, garden pipes, and brigade pipes.</p>
+      </div>
+    </div>
+  </section>
+ <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="about" data-aos="fade-up">
+      <p>
+        We are a leading hardware store offering top-quality products from renowned brands. Our goal is to provide reliable and affordable solutions to our customers for all hardware needs.
+      </p>
+      <a href="brochure.pdf" class="brochure-button" download>Download Brochure</a>
+    </div>
+  </section>
+  <section id="brands">
+    <h2 class="section-title">Brand Partners</h2>
+    <div class="brands" data-aos="fade-in">
+      <img src="brand1.png" alt="Brand 1" />
+      <img src="brand2.png" alt="Brand 2" />
+      <img src="brand3.png" alt="Brand 3" />
+      <img src="brand4.png" alt="Brand 4" />
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact">
+      <p>📞 Anil Gupta: <a href="tel:+919503768217">9503768217</a></p>
+      <p>📞 Aman Gupta: <a href="tel:+918149923191">8149923191</a></p>
+      <p>Email: <a href="mailto:info@anilhardware.com">anil.hadware101@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ANIL HARDWARE. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script>
+  function openEnquiry() {
+    document.getElementById('enquiryModal').style.display = 'block';
+  }
+
+  function closeEnquiry() {
+    document.getElementById('enquiryModal').style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('enquiryModal');
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  }
+</script>
+<script>
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  window.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    if (!event.target.matches(".dropdown-toggle")) {
+      if (menu && menu.style.display === "block") {
+        menu.style.display = "none";
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
